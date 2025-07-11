@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+</head>
+<style>
+    body{
+        font-family: sans-serif;
+        background-color: #98e039;
+    }
+footer {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      background-color: #777;
+      color: white; 
+      border-radius: 8px;
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+.container {
+      background-color: #fff;
+      padding: 20px;
+      margin-top: 10px;
+      border-radius: 8px;
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+.ab{
+        
+        height: 40px;
+        text-align: center;
+        border-style: hidden;
+        text-shadow: 6px 6px 7px #bd2929;
+        cursor:alias;
+        transition: .5s;     
+    }
+.ab:hover{
+        border-radius: 8px;
+        background-color: rgba(122, 236, 9, 0.808);
+        box-shadow: 3px 3px 5px #000000;
+    }
+.h2{
+    text-align:center; 
+    color:#4a4a4a; 
+    margin-bottom: 24px;
+}
+.form{
+    max-width:400px; 
+    margin:0 auto;
+}
+.l1{
+    display:block; 
+    font-weight:bold;
+    margin-bottom:6px;
+}
+.l2{
+    display:block; 
+    font-weight:bold; 
+    margin-bottom:6px;
+}
+div{
+    margin-bottom:18px;
+    text-align:center;
+}
+.ta{
+    width:100%; 
+    padding:10px; 
+    border:1px solid #b7e283; 
+    border-radius:5px; 
+    font-size:1em; 
+    resize:vertical;
+}
+.ab{
+    width:120px; 
+    font-size:1.1em;
+}
+.in{
+    width:100%; 
+    padding:10px; 
+    border:1px solid #b7e283; 
+    border-radius:5px; 
+    font-size:1em;
+}
+</style>
+<script>
+
+</script>
+<body>
+    <div class="container">
+    <h2 class="h2">Thank you for your feedback</h2>
+    <form action="/save" method="post" class="form">
+        <div>
+            <label for="name" class="l1">Name:</label>
+            <input type="text" name="name" id="name" required placeholder="Enter your name" title="Name" class="in">
+        </div>
+        <div>
+            <label for="message" class="l2">Message:</label>
+            <textarea name="message" id="message" rows="4" cols="30" required title="Message" placeholder="Enter your message"
+                      class="ta"></textarea>
+        </div>
+        <div>
+            <input type="submit" value="Submit" class="ab">
+        </div>
+    </form>
+</div>
+</body>
+<footer>
+    <p>ChessWiki. Made with ♟️ by Shubham</p>
+</footer>
+</html>

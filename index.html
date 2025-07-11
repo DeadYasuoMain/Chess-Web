@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChessWiki</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<style>
+    nav{
+        background:  rgb(136, 139, 132);
+        height: 40px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+    }
+    .select{
+        background-color: azure;
+        background-color: rgb(251, 251, 252);
+        border-style: ridge;
+        border-radius: 8px;
+    }
+    .p{
+        font-size: large;
+        font-family: serif;
+        background-color: rgba(111, 190, 31, 0.808);
+        border: 3px rgb(0, 0, 0) double;
+        margin: 20px;
+    }
+    .text{
+        border-style: ridge;
+        border-radius: 8px;
+        margin: auto;
+        transition: 1s;
+    }
+    .text:hover{
+        box-shadow: 2px 2px 30px black;
+    }
+    select:hover{
+        transition: 1s;
+        background-color: rgb(0, 0, 0);
+        color: white;
+        border: 1px rgb(179, 218, 100) solid;
+    }
+    select{
+        cursor: pointer;
+        background-color:white;
+        color: black;
+        border: 1px rgb(140, 212, 194) solid;
+        font-family:sans-serif;
+    }
+    .d1{
+        background-color: rgba(122, 236, 9, 0.808);
+        box-shadow: 5px 5px 20px black;
+    }
+    a:hover{
+        background-color: gray;
+        text-decoration: wavy;
+    }
+    a{
+        text-decoration: none;
+        background-color:whitesmoke;
+    }
+    .rst{
+        cursor: pointer;
+        background: #24ca0eb2;
+        border: 1px lime solid;
+        color: rgb(0, 0, 0);
+        transition: 1s;
+    }
+    .rst:hover{
+        
+        background: black;
+        color: #24ca0e;
+    }
+    .rst:active{
+        opacity: .8;
+    }
+    .ab{
+        
+        height: 40px;
+        text-align: center;
+        border-style: hidden;
+        text-shadow: 6px 6px 7px #bd2929;
+        cursor:alias;
+        transition: .5s;     
+    }
+    .ab:hover{
+        border-radius: 8px;
+        background-color: rgba(122, 236, 9, 0.808);
+        box-shadow: 3px 3px 5px #000000;
+    }
+    
+    .d1 img{
+        border: 1px black solid;
+        
+        transition:.75s;
+    }
+    .act{
+        border-radius: 100px;
+        transform: rotate(360deg);
+    }
+    .dark{
+        background-color: #000000;
+    }
+</style>
+<script>
+    function cl(){
+        const egg = document.getElementById("img");
+        egg.classList.toggle("act");
+    }
+    function th(){
+        const thm = document.getElementById("bd");
+        thm.classList.toggle("dark");
+    }
+    
+</script>
+<body bgcolor="#fff" id="bd">
+    <nav>
+        <button title="about website" width="70px" onclick="window.location.href=this.value" value="http://127.0.0.1:5500/about.html" class="ab">About</button>
+        <button title="Create Feedback" width="70px" onclick="window.location.href=this.value" value="http://127.0.0.1:5500/templates/feedback.html" class="ab">Feedback</button>
+        <button title="Toggle theme" onclick="th()" class="ab" width="100px" class="ba">Dark theme</button>
+    </nav>
+    <div class="container">
+    <div class="d1">
+    <center><img src="chesslogo.png" height="100px" onclick="cl()" id="img" title="click to rotate"></center>
+    <h1 align="center"><font face="Microsoft Sans Serif" color="">Welcome to the ChessWiki</font></h1><hr>
+    </font>
+    </div>
+    <form>
+        <div class="select">
+        <label for="links"><font face="sans-serif">Choose a page:</font></label>
+        <select id="links" onchange="window.location.href=this.value">
+            <option value="">--select--</option>
+            <option value="http://127.0.0.1:5500/players.html">Top 10 Chess Players</option>
+            <option value="http://127.0.0.1:5500/how_to_play.html">How to play Chess</option>
+            <option value="http://127.0.0.1:5500/chess-opning.html">Openings Moves</option>
+            <option value="http://127.0.0.1:5500/Board.html">Chess Board</option>
+            <option value="http://127.0.0.1:5500/learn.html">Learn Chess</option>
+            <option value="http://127.0.0.1:5500/chess-strats.html">Chess-Strategies</option>
+            <option value="http://127.0.0.1:5500/chess_clock.html">Chess Clock</option>
+            <input type="reset" value="Reset" class="rst">
+        </div>
+            <br>
+            <div class="text" id="bd">
+                <br>
+                <h3 class="p">Your Gateway to the World of Chess</h3>
+                <p class="p">Chess Wiki is your all-in-one resource for learning, exploring, and mastering the timeless game of chess. Whether you're a beginner trying to understand the rules or an experienced player seeking strategies, openings, and historical insights—this site has you covered.
+                    Discover famous games, top players, powerful tactics, and the beauty of chess in every move.</p>
+                    <br>  
+            </div>
+        </select>
+     </form>
+</div>
+
+</body>
+</html>
