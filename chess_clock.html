@@ -4,115 +4,182 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chess Clock</title>
+    <style>
+        .b1{
+            height: 300px;
+            width: 100%;
+            font-size: 80px;
+        }
+        .b2{
+            height: 300px;
+            width: 100%;
+            font-size: 80px;
+        }
+        .button-active{
+            background-color: rgb(114, 201, 28);
+        }
+        .button-inactive{
+            background-color: rgb(59, 105, 167);
+        }
+        .controls {
+            margin: 12px 0;
+            display:flex;
+            gap:8px;
+            align-items:center;
+        }
+        .controls input[type="number"] { width: 80px; padding:6px }
+        .controls button { padding:6px 10px }
+    </style>
 </head>
-<style>
-    .b1{
-        height: 300px;
-        width: 100%;
-        font-size: 80px;
-    }
-    .b2{
-        height: 300px;
-        width: 100%;
-        font-size: 80px;
-    }
-    .button-active{
-        background-color: rgb(114, 201, 28);
-    }
-    .button-inactive{
-        background-color: rgb(59, 105, 167);
-    }
-</style>
-<script>
-    let activeButton = 1; // 1 for b1, 2 for b2
-
-    let time1 = 5 * 60; // 5 minutes in seconds
-    let time2 = 5 * 60;
-    let interval = null;
-
-    function formatTime(t) {
-        const m = Math.floor(t / 60).toString().padStart(2, '0');
-        const s = (t % 60).toString().padStart(2, '0');
-        return `${m}:${s}`;
-    }
-
-    function updateDisplay() {
-        document.getElementById("b1").textContent = formatTime(time1);
-        document.getElementById("b2").textContent = formatTime(time2);
-    }
-
-    function tick() {
-        if (activeButton === 1) {
-            if (time1 > 0) {
-                time1--;
-                updateDisplay();
-                if (time1 === 0) stopClock();
-            }
-        } else {
-            if (time2 > 0) {
-                time2--;
-                updateDisplay();
-                if (time2 === 0) stopClock();
-            }
-        }
-    }
-
-    function startClock() {
-        if (!interval) {
-            interval = setInterval(tick, 1000);
-        }
-    }
-
-    function stopClock() {
-        clearInterval(interval);
-        interval = null;
-    }
-
-    function swi(btn) {
-        if (btn === 1 && activeButton !== 1 && time1 > 0 && time2 > 0) {
-            activeButton = 1;
-            updateButtons();
-            startClock();
-        } else if (btn === 2 && activeButton !== 2 && time1 > 0 && time2 > 0) {
-            activeButton = 2;
-            updateButtons();
-            startClock();
-        }
-    }
-
-    function updateButtons() {
-        const b1 = document.getElementById("b1");
-        const b2 = document.getElementById("b2");
-        if (activeButton === 1) {
-            b1.classList.add("button-active");
-            b1.classList.remove("button-inactive");
-            b2.classList.add("button-inactive");
-            b2.classList.remove("button-active");
-        } else {
-            b2.classList.add("button-active");
-            b2.classList.remove("button-inactive");
-            b1.classList.add("button-inactive");
-            b1.classList.remove("button-active");
-        }
-    }
-
-    window.onload = function() {
-        updateDisplay();
-        updateButtons();
-        startClock();
-        // Add click handlers to pass button id
-        document.getElementById("b1").onclick = () => swi(1);
-        document.getElementById("b2").onclick = () => swi(2);
-    };
-</script>
 <body>
     <div class="container">
+        <div class="controls">
+            <label for="minutesInput">Start time (minutes):</label>
+            <input id="minutesInput" type="number" min="1" value="5" />
+            <button id="setTimeBtn" title="Set starting time">Set time</button>
+            <button id="startBtn" title="Start/Pause">Start/Pause</button>
+            <button id="resetBtn" title="Reset timers to start time">Reset</button>
+        </div>
+
         <div>
-            <button class="b1" onclick="swi()" id="b1" title="Player 1 Timer">05:00</button>
+            <button class="b1" id="b1" title="Player 1 Timer">05:00</button>
         </div>
         <div>
-            <button class="b2" onclick="swi()" id="b2" title="Player 2 Timer">05:00</button>
+            <button class="b2" id="b2" title="Player 2 Timer">05:00</button>
         </div>
     </div>
+
+    <script>
+        // activeButton: 1 for player1, 2 for player2
+        let activeButton = 1;
+
+        // startTime is the configured start time in seconds
+        let startTime = 5 * 60;
+        let time1 = startTime;
+        let time2 = startTime;
+        let interval = null;
+        let running = false; // whether clock is currently ticking
+
+        function formatTime(t) {
+            if (t < 0) t = 0;
+            const m = Math.floor(t / 60).toString().padStart(2, '0');
+            const s = (t % 60).toString().padStart(2, '0');
+            return `${m}:${s}`;
+        }
+
+        function updateDisplay() {
+            document.getElementById("b1").textContent = formatTime(time1);
+            document.getElementById("b2").textContent = formatTime(time2);
+        }
+
+        function tick() {
+            if (!running) return;
+            if (activeButton === 1) {
+                if (time1 > 0) {
+                    time1--;
+                    updateDisplay();
+                    if (time1 === 0) stopClock();
+                }
+            } else {
+                if (time2 > 0) {
+                    time2--;
+                    updateDisplay();
+                    if (time2 === 0) stopClock();
+                }
+            }
+        }
+
+        function startClock() {
+            if (!interval) {
+                interval = setInterval(tick, 1000);
+            }
+            running = true;
+        }
+
+        function stopClock() {
+            running = false;
+            if (interval) {
+                clearInterval(interval);
+                interval = null;
+            }
+        }
+
+        function toggleStartPause() {
+            if (running) stopClock(); else startClock();
+            updateStartButton();
+        }
+
+        function swi(btn) {
+            // switch active player only when timers > 0
+            if (btn === 1 && activeButton !== 1 && time1 > 0 && time2 > 0) {
+                activeButton = 1;
+                updateButtons();
+                // ensure clock is running
+                startClock();
+            } else if (btn === 2 && activeButton !== 2 && time1 > 0 && time2 > 0) {
+                activeButton = 2;
+                updateButtons();
+                startClock();
+            }
+        }
+
+        function updateButtons() {
+            const b1 = document.getElementById("b1");
+            const b2 = document.getElementById("b2");
+            if (activeButton === 1) {
+                b1.classList.add("button-active");
+                b1.classList.remove("button-inactive");
+                b2.classList.add("button-inactive");
+                b2.classList.remove("button-active");
+            } else {
+                b2.classList.add("button-active");
+                b2.classList.remove("button-inactive");
+                b1.classList.add("button-inactive");
+                b1.classList.remove("button-active");
+            }
+        }
+
+        function setStartTimeFromInput() {
+            const input = document.getElementById('minutesInput');
+            const minutes = Number(input.value);
+            if (!Number.isFinite(minutes) || minutes <= 0) {
+                alert('Please enter a valid number of minutes (>= 1).');
+                return;
+            }
+            startTime = Math.round(minutes * 60);
+            resetTimers();
+        }
+
+        function resetTimers() {
+            stopClock();
+            time1 = startTime;
+            time2 = startTime;
+            activeButton = 1;
+            updateDisplay();
+            updateButtons();
+            updateStartButton();
+        }
+
+        function updateStartButton() {
+            const btn = document.getElementById('startBtn');
+            btn.textContent = running ? 'Pause' : 'Start';
+        }
+
+        // wire up UI
+        window.onload = function() {
+            // set initial display
+            updateDisplay();
+            updateButtons();
+            updateStartButton();
+
+            // click handlers for the timers
+            document.getElementById("b1").onclick = () => swi(1);
+            document.getElementById("b2").onclick = () => swi(2);
+
+            document.getElementById('setTimeBtn').onclick = setStartTimeFromInput;
+            document.getElementById('startBtn').onclick = toggleStartPause;
+            document.getElementById('resetBtn').onclick = resetTimers;
+        };
+    </script>
 </body>
 </html>
