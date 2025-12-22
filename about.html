@@ -7,38 +7,15 @@
 </head>
 <link rel="stylesheet" href="style.css">
 <style>
-    div a{
-        text-decoration: none;
-        color: #7eb13b;
-    }
     div a:hover{
         color: chartreuse;
-        text-decoration: underline;
+        text-decoration: none;
+        transition: 500ms;
     }
-    body div div .AC{
-        white-space: nowrap;
-    }
-    body div div .DC{
-        white-space: nowrap;
-    }
-    .silksong{
-        visibility: hidden;
-    }
-    .but{
-        height: 30px;
-        background-color: #89d12b;
-        border: 1px cyan solid;
-        transition: .50s;
-        cursor: pointer;
-        box-shadow:3px 3px 6px #000000;
-    }
-    .but:hover{
-        transform: scale(110%);
-        background: #00ff40;
-        background: linear-gradient(77deg, rgba(0, 255, 64, 1) 22%, rgba(0, 217, 255, 1) 99%);
-        }
-    .but:active{
-        transform: scale(95%);
+    div a:not(:hover){
+        text-decoration: none;
+        color: #7eb13b;
+        transition: 500ms;
     }
     hr{
         height: 5px;
@@ -56,27 +33,6 @@
  <div class="container">
     <h1>This Web site is created by Shubham Majhi</h1>
     <h2>My <a href="https://www.chess.com/home">Chess.com</a> id is <a href="https://www.chess.com/member/deadyasuomain">DeadYasuoMain.</a></h2>
-    <h1>Some songs I listen while playing chess :-</h1>
-    <button class="but" onclick="dr()">Click here to see the songs</button>
-    <hr color="#00ff40">
-    <div class="silksong" id="hidden">
-    <div class="AC" align="right">
-    <iframe class="spotify-embed" src="https://open.spotify.com/embed/track/4gCnaT6NKQmR3hqEeHp30t?utm_source=generator" width="50%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    <iframe class="spotify-embed" src="https://open.spotify.com/embed/track/42yHzwCrmrPYnOiX2tp4yQ?utm_source=generator" width="50%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe><br>
-    <iframe class="spotify-embed" src="https://open.spotify.com/embed/track/2QKsTxHZS6XWkyrDhcbf3A?utm_source=generator" width="50%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    <iframe class="spotify-embed" src="https://open.spotify.com/embed/track/3flQv4DNGg31Ic4vBv45Tj?utm_source=generator" width="50%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe><br>
-    <iframe class="spotify-embed" src="https://open.spotify.com/embed/track/6xwhCiWXREsAIQVZqHswVw?utm_source=generator" width="50%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    <iframe class="spotify-embed" src="https://open.spotify.com/embed/track/4COR2ZPEyUn0lsbAouRWxA?utm_source=generator" width="50%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    </div>
-    <div class="DC" align="left">
-    <iframe class="spotify-embed" src="https://open.spotify.com/embed/track/1yJOyX2W6AP3YTuH4wMCon?utm_source=generator" width="50%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    <iframe class="spotify-embed" src="https://open.spotify.com/embed/track/299X2r8Ei0ecTat3CdmdaA?utm_source=generator" width="50%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe><br>
-    <iframe class="spotify-embed" src="https://open.spotify.com/embed/track/3ZE6vaW2qdT5WjTQqjJFcJ?utm_source=generator" width="50%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    <iframe class="spotify-embed" src="https://open.spotify.com/embed/track/1xsExFad0m5ikHaejXZrcA?utm_source=generator" width="50%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe><br>
-    <iframe class="spotify-embed" src="https://open.spotify.com/embed/track/17VP4tofJ3evJbtY8Tk1Qi?utm_source=generator" width="50%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    <iframe class="spotify-embed" src="https://open.spotify.com/embed/track/03RJu2XQZerxY8XJYJj7Xc?utm_source=generator" width="50%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-    </div>
-    </div>
-</div>
+ </div> 
 </body>
 </html>
